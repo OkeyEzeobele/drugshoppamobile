@@ -2,6 +2,7 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '/../services/shared_service.dart';
 import '/../ui/pallete.dart';
 
@@ -21,11 +22,11 @@ class _GreetingState extends State<Greeting> {
   // ignore: unused_field
   String _firstname = '';
   _GreetingState() {
-    getTextFromFile().then(
-      (val) => setState(() {
-        _firstname = val;
-      }),
-    );
+    // getTextFromFile().then(
+    //   (val) => setState(() {
+    //     _firstname = val;
+    //   }),
+    // );
   }
 
   @override
@@ -83,9 +84,21 @@ class _GreetingState extends State<Greeting> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox.square(
-              dimension: 50,
-              child: Image.asset('assets/boy.png'),
+            GestureDetector(
+              child: CircleAvatar(
+                radius: heightOfScreen * 0.02,
+                backgroundColor: FvColors.textview79FontColor,
+                child: FaIcon(
+                  FontAwesomeIcons.solidUser,
+                  color: FvColors.textview50FontColor,
+                ),
+              ),
+              onTap: () {
+                // SharedService.logout(context);
+              },
+            ),
+            SizedBox(
+              width: 5,
             ),
             SizedBox(
               width: widthOfScreen * 0.25,
@@ -120,30 +133,26 @@ class _GreetingState extends State<Greeting> {
               ),
             ),
             SizedBox(
-              width: widthOfScreen * 0.4
+              width: widthOfScreen * 0.4,
             ),
             GestureDetector(
-              child: CircleAvatar(
-                radius: heightOfScreen * 0.03,
-                backgroundColor: FvColors.textview79FontColor,
-                child: SizedBox.square(
-                  dimension: heightOfScreen * 0.025,
-                  child: Image.asset('assets/bell.png'),
-                ),
+              child: FaIcon(
+                FontAwesomeIcons.solidBell,
+                color: FvColors.maintheme,
               ),
               onTap: () {
                 SharedService.logout(context);
               },
-            ),
+            )
           ],
         ),
       ],
     );
   }
 
-  Future<String> getTextFromFile() async {
-    var userDetails = await SharedService.loginDetails();
-    var name = userDetails!.payload!.user!.fullName;
-    return name.substring(0, name.indexOf(' '));
-  }
+  // Future<String> getTextFromFile() async {
+  //   var userDetails = await SharedService.loginDetails();
+  //   var name = userDetails!.payload!.user!.fullName;
+  //   return name.substring(0, name.indexOf(' '));
+  // }
 }

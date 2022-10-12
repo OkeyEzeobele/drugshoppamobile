@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 // import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:drug_shoppa/pages/shop/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
@@ -46,10 +47,12 @@ class _DashboardState extends State<Dashboard> {
             Homescreen(),
             Center(child: Text('Coming Soon')),
             Center(child: Text('Coming Soon')),
+            // Shop(),
             Center(child: Text('Coming Soon')),
           ],
         ),
         bottomNavigationBar: WaterDropNavBar(
+          waterDropColor: FvColors.maintheme,
           backgroundColor: navigationBarColor,
           onItemSelected: (int index) {
             setState(() {

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '/../ui/pallete.dart';
 
 class QuickLinks extends StatefulWidget {
@@ -22,10 +23,14 @@ class _QuickLinksState extends State<QuickLinks> {
     var heightOfScreen =
         MediaQuery.of(context).size.height - marginFromSafeArea;
     var widthOfScreen = MediaQuery.of(context).size.width;
+     final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: '+2348093298137',
+    );
     // debugPrint('Screen Height: $heightOfScreen');
     // debugPrint('Screen Width: $widthOfScreen');
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,32 +84,38 @@ class _QuickLinksState extends State<QuickLinks> {
                 ),
               ),
             ),
-            Card(
-              elevation: 5,
-              shadowColor: Colors.grey.shade50,
-              color: FvColors.textview88FontColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: SizedBox(
-                height: heightOfScreen * 0.09,
-                width: widthOfScreen * 0.3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox.square(
-                      dimension: heightOfScreen * 0.06,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Image(
-                          image: AssetImage('assets/phone-call.png'),
+            GestureDetector(
+              child: Card(
+                elevation: 5,
+                shadowColor: Colors.grey.shade50,
+                color: FvColors.textview88FontColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: SizedBox(
+                  
+                  height: heightOfScreen * 0.09,
+                  width: widthOfScreen * 0.3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox.square(
+                        dimension: heightOfScreen * 0.06,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Image(
+                            image: AssetImage('assets/phone-call.png'),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+              onTap: () {
+                launchUrl(launchUri);
+              },
             ),
           ],
         ),
